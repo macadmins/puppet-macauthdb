@@ -1,4 +1,4 @@
-# == Class: managedmac
+# == Class: macauthdb
 #
 # Module initializer.
 #
@@ -19,9 +19,9 @@
 #
 # === Examples
 #
-#  include managedmac
+#  include macauthdb
 #
-#  class { managedmac: }
+#  class { macauthdb: }
 #
 # === Authors
 #

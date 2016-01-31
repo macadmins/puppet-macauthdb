@@ -1,4 +1,4 @@
-# == Class: managedmac::authorization
+# == Class: macauthdb::authorization
 #
 # Controls various system authorization keys, granting users access to system
 # resources otherwise only accessible by administrators.
@@ -26,7 +26,7 @@
 #   Type: Bool
 #
 # [*allow_dvd_setregion_initial*]
-#   Allow 'everyone' to set the inital DVD region code, true or false.
+#   Allow 'everyone' to set the initial DVD region code, true or false.
 #   Default: false
 #   Type: Bool
 #
@@ -41,19 +41,19 @@
 #
 # # Example: defaults.yaml
 # ---
-# managedmac::authorization::allow_energysaver true
-# managedmac::authorization::allow_datetime true
-# managedmac::authorization::allow_timemachine true
+# macauthdb::authorization::allow_energysaver true
+# macauthdb::authorization::allow_datetime true
+# macauthdb::authorization::allow_timemachine true
 #
 # Then simply, create a manifest and include the class...
 #
 #  # Example: my_manifest.pp
-#  include managedmac::authorization
+#  include macauthdb::authorization
 #
 # If you just wish to test the functionality of this class, you could also do
 # something along these lines:
 #
-#  class { 'managedmac::authorization':
+#  class { 'macauthdb::authorization':
 #    allow_energysaver => true,
 #    allow_datetime    => true,
 #    allow_timemachine => true,
