@@ -1,8 +1,9 @@
 # Purpose
+
 This module includes puppet types and providers to manage the OS X  authorization database(/var/db/auth.db)
 
 ```
-class {'macauthdb:
+class {'macauthdb':
     allow_energysaver            => true,
     allow_printers               => true,
     allow_timemachine            => true,
@@ -14,7 +15,7 @@ class {'macauthdb:
 By default, this module will attempt to also install the `sqlite3` gem, which is required. If you're already managing that resource somewhere, set `install_gems` to false.
 
 ```
-class {'macauthdb:
+class {'macauthdb':
     install_gems    => false,
     allow_printers  => true
 }
