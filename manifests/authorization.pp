@@ -67,15 +67,7 @@
 #
 # Copyright 2015 Simon Fraser University, unless otherwise noted.
 #
-class macauthdb::authorization (
-
-  $allow_energysaver            = false,
-  $allow_datetime               = false,
-  $allow_timemachine            = false,
-  $allow_printers               = false,
-  $allow_dvd_setregion_initial  = false,
-
-) {
+class macauthdb::authorization inherits macauthdb {
 
   # System Preference Panes
   validate_bool ($allow_energysaver)

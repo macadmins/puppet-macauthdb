@@ -32,11 +32,15 @@
 # Copyright 2015 Simon Fraser University, unless otherwise noted.
 #Brian Warsing <bcw@sfu.ca>
 class macauthdb (
-  $install_gems           = $macauthdb::params::install_gems,
-  $sqlite_manage          = $macauthdb::params::sqlite_manage,
-  $cfpropertylist_manage  = $macauthdb::params::cfpropertylist_manage,
-  $sqlite_pkgname         = $macauthdb::params::sqlite_pkgname,
-  $sqlite_version         = $macauthdb::params::sqlite_version
+  $install_gems                 = $macauthdb::params::install_gems,
+  $sqlite_manage                = $macauthdb::params::sqlite_manage,
+  $sqlite_pkgname               = $macauthdb::params::sqlite_pkgname,
+  $sqlite_version               = $macauthdb::params::sqlite_version,
+  $allow_energysaver            = $macauthdb::params::allow_energysaver,
+  $allow_datetime               = $macauthdb::params::allow_datetime,
+  $allow_timemachine            = $macauthdb::params::allow_timemachine,
+  $allow_printers               = $macauthdb::params::allow_printers,
+  $allow_dvd_setregion_initial  = $macauthdb::params::allow_dvd_setregion_initial
 ) inherits macauthdb::params {
 
   unless $::operatingsystem  ==  'Darwin' {
