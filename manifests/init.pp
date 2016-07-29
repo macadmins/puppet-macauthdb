@@ -31,7 +31,14 @@
 #
 # Copyright 2015 Simon Fraser University, unless otherwise noted.
 #Brian Warsing <bcw@sfu.ca>
-class macauthdb {
+class macauthdb (
+  $install_gems           = $macauthdb::params::install_gems,
+  $sqlite_manage          = $macauthdb::params::sqlite_manage,
+  $cfpropertylist_manage  = $macauthdb::params::cfpropertylist_manage,
+  $sqlite_pkgname         = $macauthdb::params::sqlite_pkgname,
+  $sqlite_version         = $macauthdb::params::sqlite_version
+) inherits macauthdb::params {
+
   unless $::operatingsystem  ==  'Darwin' {
     fail("unsupported osfamily: ${::osfamily}")
   }
@@ -42,7 +49,6 @@ class macauthdb {
     fail("unsupported product version: ${::macosx_productversion_major}")
   }
 
-  include macauthdb::params
   class { 'macauthdb::install': } ~>
   class { 'macauthdb::authorization': }
 

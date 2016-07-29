@@ -1,9 +1,7 @@
 # Parameters class for macauthdb
 class macauthdb::params (
-
-  $install_gems = true,
-
-){
+  $install_gems = true
+) {
 
   $sqlite_manage = $::osfamily ? {
     'Darwin' => true,
