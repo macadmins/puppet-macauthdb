@@ -1,14 +1,14 @@
 # Parameters class for macauthdb
 class macauthdb::params (
-  $install_gems = true
+  $install_gems                 = true,
+  $allow_energysaver            = false,
+  $allow_datetime               = false,
+  $allow_timemachine            = false,
+  $allow_printers               = false,
+  $allow_dvd_setregion_initial  = false
 ) {
 
   $sqlite_manage = $::osfamily ? {
-    'Darwin' => true,
-    default   => false,
-  }
-
-  $cfpropertylist_manage = $::osfamily ? {
     'Darwin' => true,
     default   => false,
   }

@@ -11,12 +11,6 @@ class macauthdb::install inherits macauthdb {
       }
     }
 
-    if $cfpropertylist_manage {
-      package { 'CFPropertyList':
-        ensure   => '2.3.2',
-        provider => 'puppet_gem',
-      }
-    }
   }
 }
 

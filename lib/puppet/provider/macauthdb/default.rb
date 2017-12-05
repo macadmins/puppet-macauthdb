@@ -1,6 +1,6 @@
 require 'date'
 require 'sqlite3' if Puppet.features.sqlite?
-require 'cfpropertylist' if Puppet.features.cfpropertylist?
+require 'puppet/util/plist'
 
 Puppet::Type.type(:macauthdb).provide(:default) do
 
@@ -8,7 +8,7 @@ Puppet::Type.type(:macauthdb).provide(:default) do
 
   defaultfor :operatingsystem  => :darwin
   commands   :security         => '/usr/bin/security'
-  confine :feature         => [:cfpropertylist, :sqlite]
+  confine    :feature          => [:sqlite]
 
   mk_resource_methods
 
@@ -238,11 +238,9 @@ Puppet::Type.type(:macauthdb).provide(:default) do
 
   # Use `security` to create or modify the right or rule
   def security_create_right(data)
-    plist        = CFPropertyList::List.new
-    plist.value  = CFPropertyList.guess(data)
     tmp          = Tempfile.new('puppet_macauthdb')
     begin
-      plist.save(tmp.path, CFPropertyList::List::FORMAT_XML)
+      Puppet::Util::Plist.write_plist_file(data, tmp.path, :xml)
       tmp.close
       cmds = [:security, "authorizationdb", "write", resource[:name]]
       execute(cmds, :failonfail => false, :combine => false,
@@ -378,8 +376,7 @@ Puppet::Type.type(:macauthdb).provide(:default) do
   end
 
   def retreive_defaults(type)
-    plist = CFPropertyList::List.new(:file => DEFAULTS)
-    data  = CFPropertyList.native_types(plist.value)
+    data = Puppet::Util::Plist.read_plist_file(DEFAULTS)
     data[type + 's'][resource[:name]] || { :name => resource[:name] }
   end
 
